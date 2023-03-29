@@ -1,13 +1,10 @@
 import React, {FC} from 'react';
-import {Titillium_Web} from 'next/font/google'
 import Layout from "@/components/layout/Layout";
 
 
-
-
-const Home : FC = () => {
+const Home: FC = () => {
     return (
-        <Layout>
+        <Layout title={'Home'} description={'Hello mf'}>
             <h1>Hello nik</h1>
         </Layout>
     );

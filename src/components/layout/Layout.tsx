@@ -1,21 +1,29 @@
 import {FC, PropsWithChildren} from 'react';
 import Header from "@/components/layout/header/Header";
-import {Titillium_Web} from "next/font/google";
+import Meta from "@/components/seo/Meta";
+import IMeta from "@/components/seo/meta.interface";
+import dynamic from "next/dynamic";
 
+// render the Footer component on the client side
+const DynamicFooter = dynamic(()=> import ('./Footer'), {
+    ssr: false
+})
 
 // const titilium = Titillium_Web({
 //     weight:['300', '400', '600', '700'],
 //     subsets:['latin'],
 //     variable: '--titilium'
 // })
-const Layout: FC<PropsWithChildren<unknown>> = ({children}) => {
+const Layout: FC<PropsWithChildren<IMeta>> = ({children, title, description}) => {
     return (
-        <div>
+        // custom component "Meta" for seo meta tags
+        <Meta title={title} description={description}>
             <Header/>
             <main>
                 {children}
             </main>
-        </div>
+            <DynamicFooter/>
+        </Meta>
     );
 };
 
